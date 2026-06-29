@@ -1,0 +1,2492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LickCom — Agence de photographie professionnelle spécialisée dans les mariages, portraits, événements et photographie corporate. Capturer vos plus beaux instants." />
+  <meta name="keywords" content="photographe mariage paris, photographie professionnelle, portrait studio, événementiel, corporate" />
+  <meta property="og:title" content="LickCom — Capturer vos plus beaux instants" />
+  <meta property="og:description" content="Agence de photographie professionnelle. Mariages, portraits, événements." />
+  <meta property="og:type" content="website" />
+  <title>LickCom — Capturer vos plus beaux instants</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset & Variables ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A227;
+      --gold-light: #E0BC4A;
+      --gold-dark: #A8861F;
+      --dark: #0F0F0F;
+      --dark-2: #161616;
+      --dark-3: #1E1E1E;
+      --dark-4: #252525;
+      --white: #FFFFFF;
+      --white-dim: rgba(255,255,255,0.6);
+      --white-faint: rgba(255,255,255,0.08);
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-in-out: cubic-bezier(0.87, 0, 0.13, 1);
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--gold); color: var(--dark); }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--dark-2); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ── Utility ───────────────────────────────────────── */
+    .gold-text {
+      background: linear-gradient(135deg, #C9A227 0%, #E0BC4A 50%, #A8861F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .label {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .gold-rule {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+      margin: 1.5rem 0;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      box-shadow: 0 0 40px rgba(201,162,39,0.35);
+    }
+    .btn-gold:active { transform: scale(0.97); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+    .reveal-delay-4 { transition-delay: 0.48s; }
+
+    /* ── Navbar ────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3rem;
+      transition: background 0.4s, padding 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    #navbar.scrolled {
+      background: rgba(15,15,15,0.96);
+      backdrop-filter: blur(12px);
+      padding: 1rem 3rem;
+      border-color: rgba(255,255,255,0.05);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .logo-diamond {
+      width: 28px; height: 28px;
+      border: 1.5px solid rgba(201,162,39,0.6);
+      transform: rotate(45deg);
+      position: relative;
+      flex-shrink: 0;
+      transition: transform 0.6s var(--ease-out);
+    }
+    .nav-logo:hover .logo-diamond { transform: rotate(135deg); }
+    .logo-dot {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-dot::after {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta { padding: 10px 24px; font-size: 10px; }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 28px;
+      cursor: pointer;
+    }
+    .burger span {
+      width: 100%; height: 1.5px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    /* Mobile menu */
+    #mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      background: rgba(10,10,10,0.98);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    #mobile-menu.open { opacity: 1; pointer-events: auto; }
+    #mobile-menu a {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--white);
+      transition: color 0.3s;
+    }
+    #mobile-menu a:hover { color: var(--gold); }
+
+    /* ── Hero ──────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      will-change: transform;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, rgba(15,15,15,0.95) 0%, rgba(15,15,15,0.55) 55%, rgba(15,15,15,0.25) 100%);
+    }
+    .hero-overlay-bottom {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,15,15,0.8) 0%, transparent 40%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: slideInLeft 1s var(--ease-out) 0.3s forwards;
+    }
+    .hero-eyebrow-line {
+      width: 48px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 500;
+      line-height: 1.05;
+      max-width: 750px;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: slideInUp 1s var(--ease-out) 0.55s forwards;
+    }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.6);
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: slideInUp 0.9s var(--ease-out) 0.8s forwards;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: slideInUp 0.9s var(--ease-out) 1s forwards;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.3s forwards;
+    }
+    .hero-stat-val {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .hero-stat-lbl {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 3px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.6s forwards;
+      z-index: 2;
+    }
+    .scroll-hint span {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .scroll-arrow {
+      width: 1.5px; height: 36px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* Vertical decorative text */
+    .hero-side-text {
+      position: absolute;
+      right: 2.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero-side-text::before,
+    .hero-side-text::after {
+      content: '';
+      width: 1px; height: 60px;
+      background: rgba(201,162,39,0.25);
+    }
+
+    /* ── About ─────────────────────────────────────────── */
+    #about {
+      padding: 8rem 3rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-images {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+    .about-img-secondary {
+      position: absolute;
+      bottom: -2.5rem;
+      right: -2rem;
+      width: 45%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      border: 4px solid var(--dark);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+    .about-corner {
+      position: absolute;
+      top: -1rem; left: -1rem;
+      width: 56px; height: 56px;
+      border: 1.5px solid rgba(201,162,39,0.35);
+    }
+    .about-badge {
+      position: absolute;
+      top: 2rem; right: 2rem;
+      background: rgba(15,15,15,0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(201,162,39,0.25);
+      padding: 1rem 1.5rem;
+      text-align: center;
+    }
+    .about-badge-num {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .about-badge-lbl {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 4px;
+    }
+
+    .about-highlight {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+    }
+    .about-icon {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(201,162,39,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    .about-highlight h4 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .about-highlight p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.5;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 5rem;
+      padding-top: 5rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .stat-card {
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: border-color 0.4s;
+    }
+    .stat-card:hover { border-color: rgba(201,162,39,0.3); }
+    .stat-num {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-lbl {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 8px;
+    }
+
+    /* ── Services ──────────────────────────────────────── */
+    #services {
+      padding: 8rem 3rem;
+      background: var(--dark-2);
+      position: relative;
+      overflow: hidden;
+    }
+    #services::before {
+      content: '';
+      position: absolute;
+      top: -10rem; left: -10rem;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(201,162,39,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .services-inner { max-width: 1280px; margin: 0 auto; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header .gold-rule { margin: 1.5rem auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .service-card {
+      background: var(--dark-2);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      cursor: default;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,162,39,0.06), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .service-card:hover { background: var(--dark-3); }
+    .service-card:hover::after { opacity: 1; }
+
+    .service-icon {
+      width: 44px; height: 44px;
+      border: 1px solid rgba(201,162,39,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .service-card:hover .service-icon {
+      border-color: rgba(201,162,39,0.6);
+      background: rgba(201,162,39,0.06);
+    }
+
+    .service-title {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      transition: color 0.3s;
+    }
+    .service-card:hover .service-title { color: rgba(201,162,39,0.9); }
+    .service-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+      transition: color 0.3s;
+    }
+    .service-card:hover .service-desc { color: rgba(255,255,255,0.6); }
+    .service-price {
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .service-price::before {
+      content: '';
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.4s;
+    }
+    .service-card:hover .service-price::before { width: 24px; }
+
+    /* ── Portfolio ─────────────────────────────────────── */
+    #portfolio {
+      padding: 8rem 3rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .portfolio-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .filter-btn {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+      transition: all 0.3s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--gold);
+      color: var(--dark);
+      border-color: var(--gold);
+      font-weight: 600;
+    }
+
+    .masonry {
+      column-count: 3;
+      column-gap: 12px;
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .masonry-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.7s var(--ease-out);
+    }
+    .masonry-item:hover img { transform: scale(1.08); }
+    .masonry-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15,15,15,0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.4s;
+    }
+    .masonry-item:hover .masonry-overlay {
+      background: rgba(15,15,15,0.55);
+    }
+    .masonry-info {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s, transform 0.4s;
+      text-align: center;
+    }
+    .masonry-item:hover .masonry-info { opacity: 1; transform: none; }
+    .masonry-info h3 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+    .masonry-info span {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .zoom-icon {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+
+    /* Hidden for filter */
+    .masonry-item[data-hidden="true"] { display: none; }
+
+    /* Lightbox */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(10,10,10,0.97);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s;
+    }
+    #lightbox.open { opacity: 1; pointer-events: auto; }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+    .lb-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      width: 44px; height: 44px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      color: var(--white);
+      transition: border-color 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+    .lb-close:hover { border-color: var(--gold); color: var(--gold); }
+    .lb-prev, .lb-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .lb-prev { left: 1.5rem; }
+    .lb-next { right: 1.5rem; }
+    .lb-prev:hover, .lb-next:hover { border-color: var(--gold); color: var(--gold); }
+    .lb-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+    .lb-caption h3 { font-family: var(--serif); font-size: 1.1rem; }
+    .lb-caption span { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .lb-counter {
+      position: absolute;
+      bottom: 1.5rem; right: 1.5rem;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── CTA Band ──────────────────────────────────────── */
+    #cta-band {
+      position: relative;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    #cta-band img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    #cta-band::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(15,15,15,0.78);
+    }
+    .cta-band-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem;
+    }
+    .cta-band-content h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 500;
+      margin: 1rem 0 2rem;
+    }
+
+    /* ── Testimonials ──────────────────────────────────── */
+    #testimonials {
+      padding: 8rem 3rem;
+      background: var(--dark-2);
+      position: relative;
+      overflow: hidden;
+    }
+    #testimonials::before {
+      content: '"';
+      position: absolute;
+      top: 3rem; left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--serif);
+      font-size: 22rem;
+      color: rgba(255,255,255,0.02);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .testimonials-inner { max-width: 860px; margin: 0 auto; }
+
+    .slider-card {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 4rem 4rem 3rem;
+      text-align: center;
+      position: relative;
+    }
+    .quote-badge {
+      position: absolute;
+      top: -1.2rem; left: 50%;
+      transform: translateX(-50%);
+      width: 40px; height: 40px;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--dark);
+    }
+    .slider-stars {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 2rem;
+    }
+    .star { color: var(--gold); font-size: 0.85rem; }
+    .slider-quote {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-style: italic;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .slider-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .author-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(201,162,39,0.3);
+    }
+    .author-name { font-size: 14px; font-weight: 600; }
+    .author-role { font-size: 10px; color: var(--gold); letter-spacing: 0.1em; margin-top: 2px; }
+
+    .slider-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+    .slider-btn {
+      width: 44px; height: 44px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .slider-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .slider-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .dot {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.2);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .dot.active { width: 24px; background: var(--gold); }
+    .dot:not(.active) { width: 6px; }
+    .dot:hover { background: rgba(201,162,39,0.5); }
+
+    /* ── Pricing ───────────────────────────────────────── */
+    #pricing {
+      padding: 8rem 3rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+      margin-top: 4rem;
+    }
+
+    .price-card {
+      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--dark-2);
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.4s;
+      position: relative;
+    }
+    .price-card:hover { border-color: rgba(255,255,255,0.12); }
+    .price-card.featured {
+      border-color: var(--gold);
+      box-shadow: 0 0 60px rgba(201,162,39,0.12);
+    }
+
+    .price-badge {
+      position: absolute;
+      top: -1rem; left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      white-space: nowrap;
+    }
+
+    .price-head {
+      padding: 2.5rem 2rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .price-card.featured .price-head { border-color: rgba(201,162,39,0.15); }
+    .price-name { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .price-amount {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      margin-bottom: 0.5rem;
+    }
+    .price-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .price-cur { font-size: 1.1rem; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+    .price-per { font-size: 11px; color: rgba(255,255,255,0.3); margin-bottom: 6px; }
+    .price-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+    .price-features { padding: 2rem; flex: 1; }
+    .price-feature {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .feature-check {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      margin-top: 1px;
+    }
+    .price-card.featured .feature-check {
+      background: var(--gold);
+      color: var(--dark);
+    }
+    .price-card:not(.featured) .feature-check {
+      border: 1px solid rgba(201,162,39,0.35);
+      color: var(--gold);
+    }
+    .price-feature span { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+
+    .price-cta { padding: 0 2rem 2rem; }
+    .price-card.featured .btn-gold { width: 100%; justify-content: center; }
+    .price-card:not(.featured) .btn-outline { width: 100%; justify-content: center; }
+
+    /* ── FAQ ───────────────────────────────────────────── */
+    #faq {
+      padding: 8rem 3rem;
+      background: var(--dark-2);
+    }
+    .faq-inner { max-width: 760px; margin: 0 auto; }
+    .faq-list { margin-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05); }
+
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    .faq-question:hover,
+    .faq-item.open .faq-question { color: var(--gold); }
+    .faq-toggle {
+      width: 30px; height: 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+      transition: all 0.3s;
+    }
+    .faq-item.open .faq-toggle { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.45s var(--ease-in-out);
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.75;
+      padding-bottom: 1.5rem;
+      padding-right: 3rem;
+    }
+
+    /* ── Blog ──────────────────────────────────────────── */
+    #blog {
+      padding: 8rem 3rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .blog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .blog-card { cursor: pointer; }
+    .blog-img-wrap {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+    .blog-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+    .blog-card:hover .blog-img-wrap img { transform: scale(1.08); }
+    .blog-category {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+    }
+    .blog-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 0.6rem;
+    }
+    .blog-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.35;
+      margin-bottom: 0.6rem;
+      transition: color 0.3s;
+    }
+    .blog-card:hover .blog-title { color: var(--gold); }
+    .blog-excerpt {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ── Contact ───────────────────────────────────────── */
+    #contact {
+      padding: 8rem 3rem;
+      background: var(--dark-2);
+    }
+    .contact-inner { max-width: 1280px; margin: 0 auto; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .contact-form-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+    .form-field label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 13px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.3s;
+      width: 100%;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(255,255,255,0.2); }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: rgba(201,162,39,0.5); }
+    .form-field select { appearance: none; cursor: pointer; }
+    .form-field select option { background: var(--dark-3); }
+    .form-field textarea { resize: none; }
+    .form-field .error-msg { font-size: 10px; color: #f87171; display: none; }
+    .form-field.has-error input,
+    .form-field.has-error select,
+    .form-field.has-error textarea { border-color: rgba(248,113,113,0.5); }
+    .form-field.has-error .error-msg { display: block; }
+
+    .form-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 2rem;
+      border: 1px solid rgba(201,162,39,0.2);
+      background: var(--dark);
+    }
+    .form-success.show { display: flex; }
+    .success-check {
+      width: 64px; height: 64px;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+    .form-success h3 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .form-success p { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+    /* Contact sidebar */
+    .contact-info-card {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 2rem;
+      margin-bottom: 1rem;
+    }
+    .contact-info-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      text-decoration: none;
+    }
+    .contact-icon {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(201,162,39,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      color: var(--gold);
+      transition: all 0.3s;
+    }
+    .contact-info-item:hover .contact-icon { border-color: var(--gold); background: rgba(201,162,39,0.08); }
+    .contact-lbl {
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 3px;
+    }
+    .contact-val {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      transition: color 0.3s;
+    }
+    .contact-info-item:hover .contact-val { color: var(--gold); }
+
+    .contact-socials { display: flex; gap: 8px; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); }
+    .social-btn {
+      width: 38px; height: 38px;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .map-placeholder {
+      height: 180px;
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .map-grid {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(rgba(201,162,39,0.06) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(201,162,39,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .map-content { position: relative; z-index: 1; }
+    .map-icon { font-size: 1.5rem; color: var(--gold); margin-bottom: 8px; }
+    .map-addr { font-size: 12px; color: rgba(255,255,255,0.5); }
+    .map-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .map-link:hover { color: var(--gold-light); }
+
+    .hours-card {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 1.5rem 2rem;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 0.6rem;
+    }
+    .hours-day { color: rgba(255,255,255,0.35); }
+    .hours-time { color: rgba(255,255,255,0.65); }
+
+    /* ── Footer ────────────────────────────────────────── */
+    #footer {
+      background: var(--dark-3);
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-shimmer {
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+      background-size: 200%;
+      animation: shimmer 4s linear infinite;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 5rem 3rem 3rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.7;
+      max-width: 340px;
+      margin-top: 1rem;
+    }
+    .footer-tagline {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.3);
+      margin: 0.5rem 0 1rem;
+    }
+    .footer-socials { display: flex; gap: 8px; margin-top: 1.5rem; }
+    .footer-heading { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.75rem; }
+    .footer-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s;
+    }
+    .footer-links a::before {
+      content: '';
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-links a:hover::before { width: 14px; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a { font-size: 11px; color: rgba(255,255,255,0.2); transition: color 0.3s; }
+    .footer-legal a:hover { color: var(--gold); }
+
+    /* ── Back to top ────────────────────────────────────── */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 50;
+      width: 46px; height: 46px;
+      background: var(--gold);
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.85);
+      transition: opacity 0.3s, transform 0.3s, background 0.3s;
+    }
+    #back-to-top.show { opacity: 1; pointer-events: auto; transform: scale(1); }
+    #back-to-top:hover { background: var(--gold-light); box-shadow: 0 0 30px rgba(201,162,39,0.4); }
+
+    /* ── Keyframes ─────────────────────────────────────── */
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: 0.6; }
+      50%       { transform: scaleY(1.3); opacity: 1; }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-images { max-width: 500px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 768px) {
+      #navbar { padding: 1.2rem 1.5rem; }
+      #navbar.scrolled { padding: 0.8rem 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .burger { display: flex; }
+
+      #hero, #about, #services, #testimonials, #pricing, #faq, #blog, #contact {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+      .hero-content { padding: 0 1.5rem; }
+      .hero-stats { gap: 1.5rem; }
+      .hero-side-text { display: none; }
+
+      .masonry { column-count: 2; }
+      .services-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-form-group { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-header { flex-direction: column; gap: 1rem; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-inner { padding: 3rem 1.5rem; }
+      .slider-card { padding: 3rem 1.5rem 2rem; }
+
+      #cta-band { height: 280px; }
+    }
+
+    @media (max-width: 480px) {
+      .masonry { column-count: 1; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .hero-h1 { font-size: 2.2rem; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns .btn-gold,
+      .hero-btns .btn-outline { width: 100%; justify-content: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAVBAR ══════════════════════════════ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+    <div class="logo-diamond"><div class="logo-dot"></div></div>
+    <span>Lick<span style="color:var(--gold)">Com</span></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Témoignages</a></li>
+    <li><a href="#pricing">Tarifs</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <a href="#contact" class="btn-gold nav-cta">Réserver</a>
+
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mobile-menu">
+  <a href="#about" class="mobile-link">À propos</a>
+  <a href="#services" class="mobile-link">Services</a>
+  <a href="#portfolio" class="mobile-link">Portfolio</a>
+  <a href="#testimonials" class="mobile-link">Témoignages</a>
+  <a href="#pricing" class="mobile-link">Tarifs</a>
+  <a href="#blog" class="mobile-link">Blog</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+  <a href="#contact" class="btn-gold mobile-link" style="margin-top:1rem">Réserver une séance</a>
+</div>
+
+<!-- ═══════════════════════════════ HERO ════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg">
+    <img id="hero-bg-img"
+      src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=90"
+      alt="LickCom Photography" loading="eager" />
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-bottom"></div>
+
+  <div class="hero-side-text">Photographie d'art</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="label">Agence de Photographie Professionnelle</span>
+    </div>
+
+    <h1 class="hero-h1">
+      L'art de saisir<br>
+      <em class="gold-text">l'instant</em> parfait.
+    </h1>
+
+    <p class="hero-sub">
+      LickCom immortalise vos moments précieux avec une sensibilité artistique unique.
+      Mariages, portraits, événements — chaque séance devient une œuvre.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">Réserver une séance</a>
+      <a href="#portfolio" class="btn-outline">Voir le Portfolio</a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-val">500+</div>
+        <div class="hero-stat-lbl">Séances</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">300+</div>
+        <div class="hero-stat-lbl">Clients</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">5+</div>
+        <div class="hero-stat-lbl">Années</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" onclick="window.scrollTo({top:window.innerHeight,behavior:'smooth'})">
+    <span>Défiler</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
+<section id="about" style="padding:8rem 3rem;max-width:1280px;margin:0 auto;">
+  <div class="about-grid">
+    <div class="about-images reveal">
+      <img class="about-img-main"
+        src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=700&q=85"
+        alt="Photographe LickCom" loading="lazy" />
+      <img class="about-img-secondary"
+        src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80"
+        alt="Séance mariage" loading="lazy" />
+      <div class="about-corner"></div>
+      <div class="about-badge">
+        <div class="about-badge-num">5+</div>
+        <div class="about-badge-lbl">Années<br>d'expérience</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="reveal">
+        <span class="label">Notre histoire</span>
+        <h2 class="section-title" style="margin-top:1rem">
+          Nous transformons la lumière en
+          <em style="color:var(--gold)"> souvenirs</em>
+        </h2>
+        <div class="gold-rule"></div>
+        <p style="color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:1rem">
+          Fondée en 2019 à Paris, LickCom est née d'une passion profonde pour l'image et d'une conviction : chaque instant mérite d'être capturé avec soin, art et émotion.
+        </p>
+        <p style="color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:2rem">
+          Notre équipe de photographes professionnels couvre tous vos événements de vie — du mariage intime à la grande soirée corporate — avec une même exigence de qualité et un regard toujours unique.
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="about-highlight">
+          <div class="about-icon">👁</div>
+          <div>
+            <h4>Vision artistique</h4>
+            <p>Chaque cadre est pensé pour raconter une histoire authentique.</p>
+          </div>
+        </div>
+        <div class="about-highlight">
+          <div class="about-icon">♥</div>
+          <div>
+            <h4>Passion & Dévotion</h4>
+            <p>Nous apportons une attention particulière à chaque détail de votre séance.</p>
+          </div>
+        </div>
+        <div class="about-highlight">
+          <div class="about-icon">★</div>
+          <div>
+            <h4>Excellence reconnue</h4>
+            <p>Plus de 12 récompenses décernées par des associations de photographes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2" style="margin-top:2rem">
+        <a href="#contact" class="btn-gold">Nous contacter</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row">
+    <div class="stat-card reveal">
+      <div class="stat-num" data-target="500">0</div>
+      <div class="stat-lbl">Séances réalisées</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-1">
+      <div class="stat-num" data-target="300">0</div>
+      <div class="stat-lbl">Clients satisfaits</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-2">
+      <div class="stat-num" data-target="5">0</div>
+      <div class="stat-lbl">Années d'expérience</div>
+    </div>
+    <div class="stat-card reveal reveal-delay-3">
+      <div class="stat-num" data-target="12">0</div>
+      <div class="stat-lbl">Prix reçus</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ SERVICES ════════════════════════════ -->
+<section id="services">
+  <div class="services-inner">
+    <div class="section-header reveal">
+      <span class="label">Ce que nous faisons</span>
+      <h2 class="section-title" style="margin-top:0.75rem">
+        Nos <em style="color:var(--gold)">services</em>
+      </h2>
+      <div class="gold-rule" style="margin:1.5rem auto"></div>
+      <p style="color:rgba(255,255,255,0.45);max-width:500px;margin:0 auto;font-size:13px">
+        Une gamme complète de prestations photographiques pour répondre à tous vos besoins, du plus intime au plus grandiose.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">♥</div>
+        <div class="service-title">Mariage</div>
+        <p class="service-desc">Immortalisez chaque instant de votre plus beau jour avec une sensibilité artistique unique et un œil pour les détails.</p>
+        <div class="service-price">À partir de 1 200 €</div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">◉</div>
+        <div class="service-title">Portrait</div>
+        <p class="service-desc">Des portraits qui révèlent votre personnalité profonde. Chaque séance est une rencontre, chaque photo une histoire.</p>
+        <div class="service-price">À partir de 250 €</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">◈</div>
+        <div class="service-title">Événementiel</div>
+        <p class="service-desc">Soirées privées, galas, lancements de produits — nous capturons l'énergie et l'émotion de chaque événement.</p>
+        <div class="service-price">À partir de 600 €</div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">◧</div>
+        <div class="service-title">Corporate</div>
+        <p class="service-desc">Photos d'équipe, headshots professionnels et reportages d'entreprise qui renforcent votre image de marque.</p>
+        <div class="service-price">À partir de 400 €</div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">◬</div>
+        <div class="service-title">Mode</div>
+        <p class="service-desc">Direction artistique et photographie de mode pour sublimer vos collections, lookbooks et campagnes publicitaires.</p>
+        <div class="service-price">À partir de 800 €</div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">⌂</div>
+        <div class="service-title">Immobilier</div>
+        <p class="service-desc">Valorisez vos biens immobiliers avec des photos architecturales lumineuses, précises et séduisantes.</p>
+        <div class="service-price">À partir de 350 €</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">✦</div>
+        <div class="service-title">Drone</div>
+        <p class="service-desc">Des prises de vues aériennes spectaculaires pour des perspectives inédites sur vos événements et propriétés.</p>
+        <div class="service-price">À partir de 450 €</div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">✧</div>
+        <div class="service-title">Retouche Photo</div>
+        <p class="service-desc">Post-production haut de gamme : correction colorimétrique, retouche beauté et montage créatif.</p>
+        <div class="service-price">À partir de 30 €/photo</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem" class="reveal">
+      <a href="#contact" class="btn-outline">Demander un devis personnalisé</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PORTFOLIO ════════════════════════════ -->
+<section id="portfolio">
+  <div class="section-header reveal">
+    <span class="label">Notre travail</span>
+    <h2 class="section-title" style="margin-top:0.75rem">
+      <em style="color:var(--gold)">Portfolio</em>
+    </h2>
+    <div class="gold-rule" style="margin:1.5rem auto"></div>
+    <p style="color:rgba(255,255,255,0.45);max-width:480px;margin:0 auto;font-size:13px">
+      Une sélection de nos plus belles réalisations, témoins de notre passion pour l'art photographique.
+    </p>
+  </div>
+
+  <div class="portfolio-filters reveal">
+    <button class="filter-btn active" data-filter="all">Tout</button>
+    <button class="filter-btn" data-filter="mariage">Mariage</button>
+    <button class="filter-btn" data-filter="portrait">Portrait</button>
+    <button class="filter-btn" data-filter="nature">Nature</button>
+    <button class="filter-btn" data-filter="evenements">Événements</button>
+    <button class="filter-btn" data-filter="corporate">Corporate</button>
+  </div>
+
+  <div class="masonry" id="masonry">
+    <div class="masonry-item" data-cat="mariage" data-title="Lumière dorée" data-src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=75" alt="Mariage élégant" loading="lazy" style="aspect-ratio:3/4;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Lumière dorée</h3><span>mariage</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="portrait" data-title="Essence" data-src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=75" alt="Portrait artistique" loading="lazy" style="aspect-ratio:3/4;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Essence</h3><span>portrait</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="nature" data-title="Aube silencieuse" data-src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=600&q=75" alt="Paysage naturel" loading="lazy" style="aspect-ratio:4/3;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Aube silencieuse</h3><span>nature</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="evenements" data-title="Soirée Prestige" data-src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=75" alt="Gala" loading="lazy" style="aspect-ratio:4/3;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Soirée Prestige</h3><span>événements</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="corporate" data-title="Leadership" data-src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=75" alt="Portrait corporate" loading="lazy" style="aspect-ratio:3/4;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Leadership</h3><span>corporate</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="mariage" data-title="L'Alliance" data-src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=75" alt="Cérémonie" loading="lazy" style="aspect-ratio:4/3;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>L'Alliance</h3><span>mariage</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="nature" data-title="Cathédrale verte" data-src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=75" alt="Forêt" loading="lazy" style="aspect-ratio:3/4;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Cathédrale verte</h3><span>nature</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="corporate" data-title="Synergie" data-src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=75" alt="Équipe" loading="lazy" style="aspect-ratio:4/3;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Synergie</h3><span>corporate</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="portrait" data-title="Grâce" data-src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=75" alt="Portrait féminin" loading="lazy" style="aspect-ratio:3/4;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Grâce</h3><span>portrait</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="evenements" data-title="Vibrations" data-src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=600&q=75" alt="Festival" loading="lazy" style="aspect-ratio:4/3;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Vibrations</h3><span>événements</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="mariage" data-title="Grand Départ" data-src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=600&q=75" alt="Mariage voiture" loading="lazy" style="aspect-ratio:4/3;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Grand Départ</h3><span>mariage</span></div></div>
+    </div>
+    <div class="masonry-item" data-cat="nature" data-title="Cimes" data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=75" alt="Montagne" loading="lazy" style="aspect-ratio:4/3;object-fit:cover" />
+      <div class="masonry-overlay"><div class="masonry-info"><div class="zoom-icon">⊕</div><h3>Cimes</h3><span>nature</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <button class="lb-close" id="lb-close">✕</button>
+  <button class="lb-prev" id="lb-prev">‹</button>
+  <img id="lb-img" src="" alt="" />
+  <button class="lb-next" id="lb-next">›</button>
+  <div class="lb-caption">
+    <h3 id="lb-title"></h3>
+    <span id="lb-cat"></span>
+  </div>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<!-- ═══════════════════════════════ CTA BAND ════════════════════════════ -->
+<section id="cta-band">
+  <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=1600&q=75" alt="Mariage" loading="lazy" />
+  <div class="cta-band-content reveal">
+    <span class="label">Votre séance rêvée vous attend</span>
+    <h2>Transformons votre vision en<br><em style="color:var(--gold)">chef-d'œuvre</em></h2>
+    <a href="#contact" class="btn-gold">Réserver ma séance</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ TESTIMONIALS ═════════════════════════ -->
+<section id="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-header reveal">
+      <span class="label">Ce qu'ils disent</span>
+      <h2 class="section-title" style="margin-top:0.75rem">
+        Nos clients <em style="color:var(--gold)">témoignent</em>
+      </h2>
+      <div class="gold-rule" style="margin:1.5rem auto"></div>
+    </div>
+
+    <div class="reveal">
+      <div class="slider-card" id="slider-card">
+        <div class="quote-badge">"</div>
+        <div class="slider-stars">★★★★★</div>
+        <blockquote class="slider-quote" id="slider-quote"></blockquote>
+        <div class="slider-author">
+          <img class="author-avatar" id="slider-avatar" src="" alt="" />
+          <div>
+            <div class="author-name" id="slider-name"></div>
+            <div class="author-role" id="slider-role"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-controls">
+        <button class="slider-btn" id="prev-t">‹</button>
+        <div class="slider-dots" id="dots"></div>
+        <button class="slider-btn" id="next-t">›</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PRICING ══════════════════════════════ -->
+<section id="pricing">
+  <div class="section-header reveal">
+    <span class="label">Investissement</span>
+    <h2 class="section-title" style="margin-top:0.75rem">
+      Nos <em style="color:var(--gold)">tarifs</em>
+    </h2>
+    <div class="gold-rule" style="margin:1.5rem auto"></div>
+    <p style="color:rgba(255,255,255,0.45);max-width:480px;margin:0 auto;font-size:13px">
+      Des formules transparentes adaptées à chaque projet. Tous nos tarifs incluent la retouche professionnelle.
+    </p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="price-head">
+        <div class="price-name">Basic</div>
+        <div class="price-amount">
+          <span class="price-num">250</span>
+          <span class="price-cur">€</span>
+          <span class="price-per">/ séance</span>
+        </div>
+        <p class="price-desc">Parfait pour les portraits et petites séances individuelles.</p>
+      </div>
+      <div class="price-features">
+        <div class="price-feature"><div class="feature-check">✓</div><span>1h de séance photo</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>15 photos retouchées HD</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>1 décor au choix</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Galerie en ligne privée</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Téléchargement inclus</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Livraison sous 7 jours</span></div>
+      </div>
+      <div class="price-cta"><a href="#contact" class="btn-outline">Réserver</a></div>
+    </div>
+
+    <div class="price-card featured reveal reveal-delay-1">
+      <div class="price-badge">Le plus populaire</div>
+      <div class="price-head">
+        <div class="price-name">Premium</div>
+        <div class="price-amount">
+          <span class="price-num">600</span>
+          <span class="price-cur">€</span>
+          <span class="price-per">/ séance</span>
+        </div>
+        <p class="price-desc">Idéal pour les événements et reportages complets.</p>
+      </div>
+      <div class="price-features">
+        <div class="price-feature"><div class="feature-check">✓</div><span>3h de séance photo</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>50 photos retouchées HD</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>3 décors au choix</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Galerie en ligne privée</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Tirages photo inclus (5×)</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Livraison sous 5 jours</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Session vidéo courte</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Fichiers RAW inclus</span></div>
+      </div>
+      <div class="price-cta"><a href="#contact" class="btn-gold">Réserver</a></div>
+    </div>
+
+    <div class="price-card reveal reveal-delay-2">
+      <div class="price-head">
+        <div class="price-name">Prestige</div>
+        <div class="price-amount">
+          <span class="price-num">1 500</span>
+          <span class="price-cur">€</span>
+          <span class="price-per">/ projet</span>
+        </div>
+        <p class="price-desc">L'expérience complète pour les projets d'envergure.</p>
+      </div>
+      <div class="price-features">
+        <div class="price-feature"><div class="feature-check">✓</div><span>Journée complète (8h)</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Photos illimitées retouchées</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Décors et lieux illimités</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Assistant photographe</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Galerie privée + album luxe</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Fichiers RAW haute résolution</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Vidéo cinématique incluse</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Direction artistique</span></div>
+        <div class="price-feature"><div class="feature-check">✓</div><span>Livraison express 48h</span></div>
+      </div>
+      <div class="price-cta"><a href="#contact" class="btn-outline">Réserver</a></div>
+    </div>
+  </div>
+
+  <p class="reveal" style="text-align:center;color:rgba(255,255,255,0.25);font-size:12px;margin-top:2rem">
+    Devis personnalisé gratuit pour tout projet spécifique.
+    <a href="#contact" style="color:var(--gold);margin-left:4px">Contactez-nous →</a>
+  </p>
+</section>
+
+<!-- ═══════════════════════════════ FAQ ══════════════════════════════════ -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="section-header reveal">
+      <span class="label">Questions fréquentes</span>
+      <h2 class="section-title" style="margin-top:0.75rem">
+        Vos <em style="color:var(--gold)">questions</em>
+      </h2>
+      <div class="gold-rule" style="margin:1.5rem auto"></div>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question">Comment réserver une séance photo ? <span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><p>Il vous suffit de nous contacter via notre formulaire en ligne ou par téléphone. Nous échangerons sur votre projet, vos attentes et vos disponibilités. Un devis personnalisé vous sera envoyé sous 24h, suivi d'un contrat et d'un acompte de 30% pour confirmer votre réservation.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Quels sont vos délais de livraison ? <span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><p>Pour une séance Basic, comptez 5 à 7 jours ouvrés. Pour les séances Premium, 3 à 5 jours. Pour les projets Prestige, nous proposons une livraison express en 48h. Pour les mariages et grands événements, le délai est de 3 à 4 semaines pour l'intégralité du reportage.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Quels formats de fichiers recevrai-je ? <span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><p>Vous recevrez vos photos en haute résolution au format JPEG (jusqu'à 24 mégapixels), optimisées pour l'impression et le web. Les fichiers RAW sont inclus dans les formules Premium et Prestige. Toutes les photos sont accessibles via une galerie en ligne sécurisée pendant 12 mois.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Proposez-vous des séances en extérieur ? <span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><p>Absolument ! Nous réalisons des séances en studio comme en extérieur — jardins, parcs, centres-villes, plages ou tout autre lieu qui vous correspond. Pour les séances en extérieur, nous planifions en tenant compte de la lumière naturelle et des conditions météo.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Votre tarif inclut-il la retouche ? <span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><p>Oui, toutes nos formules incluent la retouche professionnelle : correction des couleurs, de l'exposition, du contraste, et retouche légère de la peau. Pour des retouches plus avancées, nous proposons des options à la carte.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Couvrez-vous les mariages à l'étranger ? <span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><p>Oui ! Nous sommes disponibles pour des reportages de mariage partout dans le monde. Les frais de déplacement sont facturés en supplément et calculés selon la destination. Contactez-nous pour un devis personnalisé.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Comment se déroule une séance portrait ? <span class="faq-toggle">+</span></button>
+        <div class="faq-answer"><p>Après une consultation en ligne pour comprendre vos attentes, nous vous accueillons dans notre studio ou sur le lieu choisi. La séance dure entre 1h et 3h selon la formule. Nous vous guidons tout au long pour vous mettre à l'aise. Les maquilleurs et stylistes peuvent être inclus sur demande.</p></div>
+      </div>
+    </div>
+
+    <div class="reveal" style="text-align:center;margin-top:3rem;padding:2rem;border:1px solid rgba(255,255,255,0.06);background:var(--dark)">
+      <p style="color:rgba(255,255,255,0.5);margin-bottom:1rem;font-size:13px">Vous n'avez pas trouvé la réponse à votre question ?</p>
+      <a href="#contact" class="btn-gold" style="font-size:10px">Posez-nous directement</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ BLOG ═════════════════════════════════ -->
+<section id="blog">
+  <div class="blog-header">
+    <div class="reveal">
+      <span class="label">Inspirations & Conseils</span>
+      <h2 class="section-title" style="margin-top:0.75rem">
+        Notre <em style="color:var(--gold)">blog</em>
+      </h2>
+      <div class="gold-rule"></div>
+    </div>
+    <a href="#" class="btn-outline reveal" style="font-size:10px;flex-shrink:0">Voir tous les articles →</a>
+  </div>
+
+  <div class="blog-grid">
+    <article class="blog-card reveal">
+      <div class="blog-img-wrap">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500&q=75" alt="Mariage" loading="lazy" />
+        <div class="blog-category">Mariage</div>
+      </div>
+      <div class="blog-meta"><span>12 juin 2025</span><span>5 min</span></div>
+      <h3 class="blog-title">Comment choisir son photographe de mariage ?</h3>
+      <p class="blog-excerpt">Le photographe de mariage est l'un des prestataires les plus importants. Voici les critères essentiels pour faire le bon choix.</p>
+    </article>
+    <article class="blog-card reveal reveal-delay-1">
+      <div class="blog-img-wrap">
+        <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=500&q=75" alt="Portrait" loading="lazy" />
+        <div class="blog-category">Portrait</div>
+      </div>
+      <div class="blog-meta"><span>28 mai 2025</span><span>4 min</span></div>
+      <h3 class="blog-title">Les secrets d'un portrait réussi</h3>
+      <p class="blog-excerpt">Lumière, pose, émotion — découvrez les techniques et conseils de nos photographes pour des portraits saisissants.</p>
+    </article>
+    <article class="blog-card reveal reveal-delay-2">
+      <div class="blog-img-wrap">
+        <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=500&q=75" alt="Drone" loading="lazy" />
+        <div class="blog-category">Drone</div>
+      </div>
+      <div class="blog-meta"><span>15 mai 2025</span><span>6 min</span></div>
+      <h3 class="blog-title">Photographie drone : nouvelles perspectives</h3>
+      <p class="blog-excerpt">La photographie par drone révolutionne la façon dont nous capturons les lieux et événements.</p>
+    </article>
+    <article class="blog-card reveal reveal-delay-3">
+      <div class="blog-img-wrap">
+        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&q=75" alt="Corporate" loading="lazy" />
+        <div class="blog-category">Corporate</div>
+      </div>
+      <div class="blog-meta"><span>2 mai 2025</span><span>7 min</span></div>
+      <h3 class="blog-title">L'importance de la photo corporate en 2025</h3>
+      <p class="blog-excerpt">À l'ère des réseaux sociaux, l'image professionnelle de votre entreprise est plus stratégique que jamais.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ CONTACT ══════════════════════════════ -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-header reveal">
+      <span class="label">Parlons de votre projet</span>
+      <h2 class="section-title" style="margin-top:0.75rem">
+        Prêt à <em style="color:var(--gold)">collaborer</em> ?
+      </h2>
+      <div class="gold-rule" style="margin:1.5rem auto"></div>
+      <p style="color:rgba(255,255,255,0.45);max-width:480px;margin:0 auto;font-size:13px">
+        Contactez-nous pour discuter de votre projet. Nous vous répondrons dans les 24 heures.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Form -->
+      <div class="reveal">
+        <form id="contact-form" novalidate>
+          <div class="contact-form-group">
+            <div class="form-field" id="ff-name">
+              <label>Votre nom *</label>
+              <input type="text" id="f-name" placeholder="Jean Dupont" autocomplete="name" />
+              <span class="error-msg">Le nom est requis.</span>
+            </div>
+            <div class="form-field" id="ff-email">
+              <label>Votre email *</label>
+              <input type="email" id="f-email" placeholder="jean@email.com" autocomplete="email" />
+              <span class="error-msg">Email invalide.</span>
+            </div>
+          </div>
+          <div class="contact-form-group">
+            <div class="form-field">
+              <label>Téléphone</label>
+              <input type="tel" id="f-phone" placeholder="+33 6 00 00 00 00" autocomplete="tel" />
+            </div>
+            <div class="form-field" id="ff-session">
+              <label>Type de séance *</label>
+              <select id="f-session">
+                <option value="">Sélectionner…</option>
+                <option>Mariage</option>
+                <option>Portrait</option>
+                <option>Événementiel</option>
+                <option>Corporate</option>
+                <option>Mode</option>
+                <option>Immobilier</option>
+                <option>Drone</option>
+                <option>Retouche photo</option>
+                <option>Autre</option>
+              </select>
+              <span class="error-msg">Choisissez un type de séance.</span>
+            </div>
+          </div>
+          <div class="form-field" id="ff-msg">
+            <label>Votre message *</label>
+            <textarea id="f-msg" rows="6" placeholder="Décrivez votre projet, vos attentes, la date souhaitée…"></textarea>
+            <span class="error-msg">Le message doit faire au moins 10 caractères.</span>
+          </div>
+          <button type="submit" class="btn-gold" id="form-submit" style="width:100%;justify-content:center">
+            <span id="btn-text">Envoyer le message</span>
+          </button>
+        </form>
+        <div class="form-success" id="form-success">
+          <div class="success-check">✓</div>
+          <h3>Message envoyé !</h3>
+          <p>Merci pour votre message. Nous vous répondrons dans les 24 heures. À très bientôt !</p>
+          <button onclick="resetForm()" class="btn-outline" style="margin-top:1.5rem;font-size:10px">Envoyer un autre message</button>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="reveal reveal-delay-2">
+        <div class="contact-info-card">
+          <div class="label" style="margin-bottom:1.25rem">Coordonnées</div>
+          <a href="tel:+33123456789" class="contact-info-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-lbl">Téléphone</div>
+              <div class="contact-val">+33 1 23 45 67 89</div>
+            </div>
+          </a>
+          <a href="mailto:contact@lickcom.com" class="contact-info-item">
+            <div class="contact-icon">✉</div>
+            <div>
+              <div class="contact-lbl">Email</div>
+              <div class="contact-val">contact@lickcom.com</div>
+            </div>
+          </a>
+          <a href="https://wa.me/33678901234" target="_blank" rel="noreferrer" class="contact-info-item">
+            <div class="contact-icon">💬</div>
+            <div>
+              <div class="contact-lbl">WhatsApp</div>
+              <div class="contact-val">+33 6 78 90 12 34</div>
+            </div>
+          </a>
+          <a href="https://maps.google.com" target="_blank" rel="noreferrer" class="contact-info-item" style="margin-bottom:0">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-lbl">Adresse</div>
+              <div class="contact-val">24 rue de la Paix<br>75002 Paris, France</div>
+            </div>
+          </a>
+          <div class="contact-socials">
+            <a href="#" class="social-btn" aria-label="Instagram">📷</a>
+            <a href="#" class="social-btn" aria-label="Facebook">f</a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+          </div>
+        </div>
+
+        <div class="map-placeholder">
+          <div class="map-grid"></div>
+          <div class="map-content">
+            <div class="map-icon">📍</div>
+            <div class="map-addr">24 rue de la Paix<br>75002 Paris, France</div>
+            <a class="map-link" href="https://maps.google.com/?q=24+rue+de+la+Paix+Paris" target="_blank" rel="noreferrer">Voir sur Maps →</a>
+          </div>
+        </div>
+
+        <div class="hours-card">
+          <div class="label" style="margin-bottom:1rem">Horaires</div>
+          <div class="hours-row"><span class="hours-day">Lun – Ven</span><span class="hours-time">9h00 – 19h00</span></div>
+          <div class="hours-row"><span class="hours-day">Samedi</span><span class="hours-time">10h00 – 17h00</span></div>
+          <div class="hours-row" style="margin-bottom:0"><span class="hours-day">Dimanche</span><span class="hours-time">Sur rendez-vous</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer id="footer">
+  <div class="footer-shimmer"></div>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:0.5rem">
+          <div class="logo-diamond"><div class="logo-dot"></div></div>
+          <span>Lick<span style="color:var(--gold)">Com</span></span>
+        </div>
+        <p class="footer-tagline">"Capturer vos plus beaux instants."</p>
+        <p>Agence de photographie professionnelle basée à Paris, spécialisée dans la photographie de mariage, portrait, événementiel et corporate depuis 2019.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="Instagram">📷</a>
+          <a href="#" class="social-btn" aria-label="Facebook">f</a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">in</a>
+          <a href="#" class="social-btn" aria-label="Twitter">𝕏</a>
+          <a href="#" class="social-btn" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Liens rapides</div>
+        <ul class="footer-links">
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#pricing">Tarifs</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+          <li><a href="mailto:contact@lickcom.com">contact@lickcom.com</a></li>
+          <li><a href="#">24 rue de la Paix, Paris</a></li>
+          <li><a href="#">Lun – Ven : 9h – 19h</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 LickCom. Tous droits réservés.</div>
+      <div class="footer-legal">
+        <a href="#">Mentions légales</a>
+        <a href="#">Confidentialité</a>
+        <a href="#">CGV</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<div id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<!-- ═══════════════════════════════ SCRIPTS ══════════════════════════════ -->
+<script>
+// ── Navbar scroll ────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 600);
+}, { passive: true });
+
+// ── Mobile menu ──────────────────────────────────────
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobile-menu');
+burger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── Hero parallax ────────────────────────────────────
+const heroBg = document.getElementById('hero-bg-img');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y < window.innerHeight) {
+    heroBg.style.transform = `translateY(${y * 0.3}px)`;
+  }
+}, { passive: true });
+
+// ── Scroll reveal ────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Trigger counters
+      const num = e.target.querySelector('[data-target]');
+      if (num) animateCounter(num);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Observe stat cards separately
+document.querySelectorAll('.stat-card').forEach(card => observer.observe(card));
+
+// ── Counter animation ────────────────────────────────
+function animateCounter(el) {
+  if (el.dataset.done) return;
+  el.dataset.done = '1';
+  const target = parseInt(el.dataset.target);
+  const suffix = el.closest('.stat-card').querySelector('.stat-lbl').textContent.includes('expérience') ? '+' : '+';
+  let start = null;
+  const dur = 1800;
+  function tick(ts) {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target) + (progress >= 1 ? '+' : '');
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = target + '+';
+  }
+  requestAnimationFrame(tick);
+}
+
+// ── Portfolio filter + lightbox ──────────────────────
+const items = document.querySelectorAll('.masonry-item');
+const filterBtns = document.querySelectorAll('.filter-btn');
+let currentItems = [];
+let lbIndex = 0;
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    items.forEach(item => {
+      const show = f === 'all' || item.dataset.cat === f;
+      item.style.display = show ? '' : 'none';
+    });
+  });
+});
+
+function getLightboxItems() {
+  return Array.from(items).filter(i => i.style.display !== 'none');
+}
+
+items.forEach(item => {
+  item.addEventListener('click', () => {
+    currentItems = getLightboxItems();
+    lbIndex = currentItems.indexOf(item);
+    showLightbox(lbIndex);
+  });
+});
+
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbTitle = document.getElementById('lb-title');
+const lbCat = document.getElementById('lb-cat');
+const lbCounter = document.getElementById('lb-counter');
+
+function showLightbox(i) {
+  const item = currentItems[i];
+  lbImg.src = item.dataset.src;
+  lbImg.alt = item.querySelector('img').alt;
+  lbTitle.textContent = item.dataset.title;
+  lbCat.textContent = item.dataset.cat;
+  lbCounter.textContent = `${i + 1} / ${currentItems.length}`;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbIndex = i;
+}
+
+document.getElementById('lb-close').addEventListener('click', closeLb);
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+document.getElementById('lb-prev').addEventListener('click', () => showLightbox((lbIndex - 1 + currentItems.length) % currentItems.length));
+document.getElementById('lb-next').addEventListener('click', () => showLightbox((lbIndex + 1) % currentItems.length));
+
+function closeLb() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') showLightbox((lbIndex - 1 + currentItems.length) % currentItems.length);
+  if (e.key === 'ArrowRight') showLightbox((lbIndex + 1) % currentItems.length);
+});
+
+// ── Testimonials slider ──────────────────────────────
+const testimonials = [
+  { name: 'Sophie & Julien M.', role: 'Mariés en juin 2024', quote: 'LickCom a capturé notre mariage avec une sensibilité et un talent extraordinaires. Chaque photo raconte notre histoire. Nous avons eu les larmes aux yeux en découvrant le reportage. Un travail d\'une beauté saisissante.', avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop' },
+  { name: 'Amandine Laurent', role: 'Directrice Marketing, Luxe & Co', quote: 'Pour nos photos corporate, LickCom a su saisir l\'essence de notre marque. Les visuels sont d\'une qualité exceptionnelle et reflètent parfaitement notre positionnement haut de gamme. Je recommande sans hésiter.', avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
+  { name: 'Thomas Beaumont', role: 'Directeur de Gala, Fondation Arc', quote: 'Notre gala annuel a été magnifiquement immortalisé. La discrétion, le professionnalisme et la qualité artistique sont au rendez-vous. Les images ont été utilisées dans notre rapport annuel avec grand succès.', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop' },
+  { name: 'Isabelle Chen', role: 'Modèle professionnelle', quote: 'Mes séances portrait avec LickCom sont toujours une expérience unique. Ils ont ce don rare de mettre en valeur chaque sujet dans sa plus belle lumière. Mon portfolio n\'a jamais été aussi fort.', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop' },
+  { name: 'Marc Delacroix', role: 'Promoteur immobilier', quote: 'Les photos de nos appartements de luxe réalisées par LickCom ont transformé nos ventes. En deux semaines, nous avions vendu 80% des unités. L\'investissement était largement justifié.', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop' },
+];
+
+let tIdx = 0;
+let tTimer = null;
+
+const dotsEl = document.getElementById('dots');
+const quoteEl = document.getElementById('slider-quote');
+const nameEl = document.getElementById('slider-name');
+const roleEl = document.getElementById('slider-role');
+const avatarEl = document.getElementById('slider-avatar');
+
+function renderTestimonial(i) {
+  const t = testimonials[i];
+  quoteEl.textContent = `"${t.quote}"`;
+  nameEl.textContent = t.name;
+  roleEl.textContent = t.role;
+  avatarEl.src = t.avatar;
+  avatarEl.alt = t.name;
+  document.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('active', j === i));
+}
+
+function buildDots() {
+  dotsEl.innerHTML = '';
+  testimonials.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => { tIdx = i; renderTestimonial(i); resetTimer(); });
+    dotsEl.appendChild(d);
+  });
+}
+
+function nextT() { tIdx = (tIdx + 1) % testimonials.length; renderTestimonial(tIdx); }
+function prevT() { tIdx = (tIdx - 1 + testimonials.length) % testimonials.length; renderTestimonial(tIdx); }
+function resetTimer() { clearInterval(tTimer); tTimer = setInterval(nextT, 5000); }
+
+buildDots();
+renderTestimonial(0);
+tTimer = setInterval(nextT, 5000);
+
+document.getElementById('next-t').addEventListener('click', () => { nextT(); resetTimer(); });
+document.getElementById('prev-t').addEventListener('click', () => { prevT(); resetTimer(); });
+
+const sliderCard = document.getElementById('slider-card');
+sliderCard.addEventListener('mouseenter', () => clearInterval(tTimer));
+sliderCard.addEventListener('mouseleave', resetTimer);
+
+// ── FAQ accordion ────────────────────────────────────
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-toggle').textContent = '+';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.querySelector('.faq-toggle').textContent = '−';
+    }
+  });
+});
+
+// ── Contact form ─────────────────────────────────────
+function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+
+document.getElementById('contact-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const session = document.getElementById('f-session').value;
+  const msg = document.getElementById('f-msg').value.trim();
+
+  let valid = true;
+  const setErr = (id, show) => document.getElementById(id).classList.toggle('has-error', show);
+
+  setErr('ff-name', !name); if (!name) valid = false;
+  setErr('ff-email', !validateEmail(email)); if (!validateEmail(email)) valid = false;
+  setErr('ff-session', !session); if (!session) valid = false;
+  setErr('ff-msg', msg.length < 10); if (msg.length < 10) valid = false;
+
+  if (!valid) return;
+
+  const btn = document.getElementById('form-submit');
+  const btnText = document.getElementById('btn-text');
+  btn.disabled = true;
+  btnText.textContent = 'Envoi en cours…';
+
+  await new Promise(r => setTimeout(r, 1500));
+
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('form-success').classList.add('show');
+});
+
+function resetForm() {
+  document.getElementById('contact-form').reset();
+  document.getElementById('contact-form').style.display = '';
+  document.getElementById('form-success').classList.remove('show');
+  document.getElementById('form-submit').disabled = false;
+  document.getElementById('btn-text').textContent = 'Envoyer le message';
+  ['ff-name','ff-email','ff-session','ff-msg'].forEach(id => {
+    document.getElementById(id).classList.remove('has-error');
+  });
+}
+
+// ── Smooth scroll for nav ────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
